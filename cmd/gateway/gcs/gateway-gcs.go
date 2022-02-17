@@ -312,7 +312,7 @@ func gcsToObjectError(err error, params ...string) error {
 			err = minio.BucketAlreadyOwnedByYou{Bucket: bucket}
 			break
 		}
-		if message == "Sorry, that name is not available. Please try a different one." {
+		if regexp.MustCompile("A Cloud Storage bucket named.*already exists").MatchString(message) || message == "The requested bucket name is not available. The bucket namespace is shared by all users of the system. Please select a different name and try again." || message == "Sorry, that name is not available. Please try a different one." {
 			err = minio.BucketAlreadyExists{Bucket: bucket}
 			break
 		}
