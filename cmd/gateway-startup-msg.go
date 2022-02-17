@@ -56,7 +56,7 @@ func printGatewayCommonMsg(apiEndpoints []string) {
 	cred := globalActiveCred
 
 	apiEndpointStr := strings.Join(apiEndpoints, "  ")
-
+	logStartupMessage("Univers Labs Version")
 	// Colorize the message and print.
 	logStartupMessage(color.Blue("Endpoint: ") + color.Bold(fmt.Sprintf("%s ", apiEndpointStr)))
 	if color.IsTerminal() && !globalCLIContext.Anonymous {
